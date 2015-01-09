@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+thead {color:green;}
+tbody {color:blue;}
+tfoot {color:red;}
+
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd)	{
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body>
+<h1>Stock Data</h1>
+<div ng-app="">
+<!--div ng-controller="saveDataapp">
+{{hello.name}}
+
+<form ng-submit="sendPost()">
+    <input ng-model="newName"/>
+    <button type="submit">Send</button>
+</form>
+ </div-->
+
+<div ng-controller="stockdataController"> 
+
+
+  <!--li ng-repeat="x in tickernames">
+    {{ x.tickerName + ',   ' + x.Price  }}
+<a ng-href="http://finance.yahoo.com/q?s={{x.tickerName}}" >Yahoo</a> 
+<a ng-href="http://www.google.com/finance?q={{x.tickerName}}" >Google</a>
+  </li-->
+
+<table>
+<thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Price</th>
+      <th>Notes</th>	
+      <th>Look up Data on</th>
+      <th>Look up Data on</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr ng-repeat="x in tickernames | orderBy : 'tickerName'">
+
+    <td>{{ x.tickerName }}</td>
+    <td>{{ x.Price }}</td>
+    <td>{{ x.Notes }}<!--input type="textarea" ng-model="message" cols="40" rows="10" placeholder="Add Notes" -->
+<textarea ng-model="message" cols="40" rows="1" placeholder="Add Notes"></textarea>
+<button ng-click="save()" >Save</button></td>
+    <td> <a ng-href="http://finance.yahoo.com/q?s={{x.tickerName}}"  target="_blank">Yahoo</a></td>
+
+    <td><a ng-href="http://www.google.com/finance?q={{x.tickerName}}"  target="_blank">Google</a></td>
+
+  </tr>
+</tbody>
+ <tfoot>
+    <tr>
+      <td>Enter Ticker</td>
+      <td>Enter Price</td>
+      <td>Enter Notes</td>
+      <td></td>
+      <td></td>	
+    </tr>
+  </tfoot>
+</table>
+</div>
+<!--script src="myStockNoteApp.js"></script>
+<script src="myStockNoteCtrl.js"></script>
+<!--script src="saveDataapp.js"--></script>
+
+<script>
+function stockdataController($scope,$http) {
+  $http.get("http://localhost/angularjsproj/stockangproj/stockdata_json.php")
+  .success(function(response) {$scope.tickernames = response;});
+// $scope.open  = function() {
+//                      var x = document.createElement("TEXTAREA");
+ //                     var t = document.createTextNode("At w3schools");
+ //                     x.appendChild(t);
+ //                     document.body.appendChild(x);
+
+ //                       alert("open");
+ //                       alert($scope.message);};
+    $scope.hello = {name: "Boaz"};
+    $scope.newName = "";
+    $scope.sendPost = function() {
+        var data = $.param({
+            json: JSON.stringify({
+                name: $scope.newName
+            })
+        });
+        $http.post("json/", data).success(function(data, status) {
+            $scope.hello = data;
+        })
+    }                   
+alert($scope.message);
+$scope.save  = function() {alert("Note Saved");};
+}
+function stockdataController($scope,$http) {
+
+
+//myStockNoteCtrl.js
+
+
+//app.controller("stockdataController", function($scope) {
+//    $scope.message = "";
+//    $scope.left  = function() {return 100 - $scope.message.length;};
+//    $scope.clear = function() {$scope.message = "";};
+ //   $scope.save  = function() {alert("Note Saved");};
+ //   $scope.open  = function() {
+//                      var x = document.createElement("TEXTAREA");
+ //                     var t = document.createTextNode("At w3schools");
+ //                     x.appendChild(t);
+ //                     document.body.appendChild(x);
+
+ //                       alert("open");
+ //                       alert($scope.message);};
+//});
+
+</script>
+
+</body>
+</html>
+

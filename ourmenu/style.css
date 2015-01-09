@@ -1,0 +1,99 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body{
+	font:20px/1.3 'Open Sans', sans-serif;
+	color: #5e5b64;
+	text-align:center;
+}
+
+form{
+	background-color: #ff9966;
+	border-radius: 2px;
+	box-shadow: 0 1px 1px #ccc;
+	width: 800px;
+        height: 500px;
+	padding: 35px 60px;
+	margin: 80px auto;
+}
+
+a, a:visited {
+	outline:none;
+	color:#389dc1;
+}
+
+a:hover{
+	text-decoration:none;
+}
+
+section, footer, header, aside, nav{
+	display: block;
+}
+
+nav{
+	display:inline-block;
+	margin:60px auto 45px;
+	//background-color:#5597b4;
+        background-color:#A3A3A3;
+	box-shadow:0 1px 1px #ccc;
+	border-radius:2px;
+}
+
+nav a{
+	display:inline-block;
+	padding: 18px 30px;
+	color:#fff !important;
+	font-weight:bold;
+	font-size:16px;
+	text-decoration:none !important;
+	line-height:1;
+	text-transform: uppercase;
+	background-color:transparent;
+
+	-webkit-transition:background-color 0.25s;
+	-moz-transition:background-color 0.25s;
+	transition:background-color 0.25s;
+}
+
+nav a:first-child{
+	border-radius:2px 0 0 2px;
+}
+
+nav a:last-child{
+	border-radius:0 2px 2px 0;
+}
+
+nav.home .home,
+nav.projects .projects,
+nav.services .services,
+nav.contact .contact,
+nav.blog .blog{
+	background-color:#996633;
+}
+nav.facebook .facebook,
+nav.google .google,
+nav.twitter .twitter,
+nav.youtube .youtube,
+nav.yelp .yelp{
+        background-color:#992233;
+}
+
+
+p{
+	font-size:22px;
+	font-weight:bold;
+//	color:#7d9098;
+        color:#000;
+}
+
+p b{
+	color:#ffffff;
+	display:inline-block;
+	padding:5px 10px;
+	background-color:#996633;
+	border-radius:2px;
+	text-transform:uppercase;
+	font-size:18px;
+}

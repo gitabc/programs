@@ -1,0 +1,35 @@
+var y = document.getElementsByClassName('foo');
+var aNode = y[0];
+var arrFromList = Array.prototype.slice.call(y);
+querySelector('.foo') 
+querySelectorAll('.foo') 
+document.getElementsByClassName('class_name')[0]
+var tests = document.getElementsByClassName('test');
+var elements = document.getElementsByClassName(names); // or:
+var elements = rootElement.getElementsByClassName(names);
+var myList = document.getElementsByTagName("p"); 
+ar xyz = document.getElementsByName("xyz");
+xyz[0].style.color="red";
+<p name="abc">you</p>
+<div class="zz" name="xyz">me</div>
+<div class="zz" name="xyz">her</div>
+
+<form>
+<input name="xyz" type="text" size="20">
+</form>
+var xx = document.querySelectorAll("span.a, span.c");
+
+for (var i = 0; i < xx.length; i++) {
+    xx[i].style.color="red";
+}JavaScript DOM Methods such as {document.getElementsByTagName(), document.getElementsByClassName(), …} returns a live NodeList or HTMLCollection.
+
+A live object means the DOM and the JavaScript object are synced in real time. Changes in one changes the other in real time. 
+For example, if you use es = document.getElementsByTagName("p") and use for-loop by checking es.length, and for each iteration you append a new child, it'll be a infinite loop, because the number of items (the es.length) also gets updated.
+Note: not all get element methods return a live object. {document.getElementById(), document.querySelectorAll()} return non-live object.
+
+var inf = document.getElementById("div_name");
+inf.innerHTML=x.responseText;
+
+js.type = "text/javascript";
+
+document.body.insertBefore(inf, js);

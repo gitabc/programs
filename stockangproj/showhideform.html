@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body ng-app="myNoteApp">
+
+<div  ng-controller="stockController">
+
+<button  id="stock-btn" ng-click="toggle()">Hide Stock</button>
+
+<p ng-show="myVar">
+Stock Name: <input type=text ng-model="stock.tickerName"><br>
+Stock Price: <input type=text ng-model="stock.currentPrice"><br><br>
+Stock Data: {{stock.tickerName + " " + stock.currentPrice}}
+</p>
+
+</div>
+<div ng-controller="companyController">
+
+<button id="company-btn" ng-click="toggle()">Hide Company</button>
+
+<p ng-hide="myVar1">
+Company Name: <input type=text ng-model="companyName"><br>
+Ticker Name: <input type=text ng-model="companytickerName"><br><br>
+Stock Ticker Name: {{companyName + " " + companytickerName}}
+</p>
+
+</div>
+<div  ng-controller="myController">
+
+<button ng-click="count = count + 1">Click Me!</button>
+
+<p>Clicked Count: {{ count }}</p>
+
+</div>
+
+<div ng-controller="myNoteCtrl">
+
+<h2>My Stock Note</h2>
+
+
+<textarea ng-model="message" cols="40" rows="10"></textarea>
+
+<p>
+<button ng_click="save()">Save Note</button>
+<button ng-click="clear()">Clear Note</button>
+</p>
+
+<p>Number of characters left: <span ng-bind="left()"></span></p>
+
+<script src="myNoteApp.js"></script>
+<script src="myNoteCtrl.js"></script>
+</div>
+<script>
+function myController($scope) {
+    $scope.count = 0;
+}
+function companyController($scope) {
+    $scope.companyName = "Google",
+    $scope.companytickerName = "Goog"
+    $scope.myVar1 = false;
+    $scope.toggle = function() {
+        $scope.myVar1 = !$scope.myVar1;
+	var x1 = document.getElementById("company-btn").innerHTML;
+        if (x1=="Hide Company")  { x1="Show Company";}
+        else {x1="Hide Company";}    
+        document.getElementById("company-btn").innerHTML = x1;
+
+    };
+}
+function stockController($scope) {
+    $scope.stock = {
+        tickerName: "Goog",
+        currentPrice: "$521.67"
+    };
+    $scope.myVar = true;
+    $scope.toggle = function() {
+        $scope.myVar = !$scope.myVar;
+        var x = document.getElementById("stock-btn").innerHTML;
+	if (x=="Hide Stock")  { x="Show Stock";}
+	else {x="Hide Stock";}    
+        document.getElementById("stock-btn").innerHTML = x;
+    };
+}
+</script> 
+
+</body>
+</html>
+

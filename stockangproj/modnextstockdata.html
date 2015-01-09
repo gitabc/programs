@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+thead {color:green;}
+tbody {color:blue;}
+tfoot {color:red;}
+
+table, th , td  {
+  border: 1px solid grey;
+  border-collapse: collapse;
+  padding: 5px;
+}
+table tr:nth-child(odd)	{
+  background-color: #f1f1f1;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+</style>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+<script src= "http://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+</head>
+
+<body>
+<h1>Stock Data</h1>
+<!--div ng-controller="saveDataapp">
+{{hello.name}}
+
+<form ng-submit="sendPost()">
+    <input ng-model="newName"/>
+    <button type="submit">Send</button>
+</form>
+ </div-->
+<div ng-app="" ng-controller="stockdataController"> 
+
+
+  <!--li ng-repeat="x in tickernames">
+    {{ x.tickerName + ',   ' + x.Price  }}
+<a ng-href="http://finance.yahoo.com/q?s={{x.tickerName}}" >Yahoo</a> 
+<a ng-href="http://www.google.com/finance?q={{x.tickerName}}" >Google</a>
+  </li-->
+
+<table>
+<thead>
+    <tr>
+      <th>Ticker</th>
+      <th>Price</th>
+      <th>Notes</th>	
+      <th>Look up Data on</th>
+      <th>Look up Data on</th>
+    </tr>
+  </thead>
+<tbody>
+  <tr ng-repeat="x in tickernames | orderBy : 'tickerName'">
+
+    <td>{{ x.tickerName }}</td>
+    <td>{{ x.Price }}</td>
+    <td>{{ x.Notes }}   <div  ng-controller="stockController"><textarea id="addnotes" ng-model="message" cols="40" rows="1" placeholder="Add Notes" ></textarea><button id="mystocknote-btn" ng-click="save()" >Save</button>
+
+<!--button  id="mystocknote-btn" ng-click="toggle()">Hide</button-->
+
+<p ng-show="myVar"><!--p>
+Stock Name: <input type=text ng-model="stock.tickerName"><br>
+Stock Price: <input type=text ng-model="stock.currentPrice"><br><br>
+Stock Data: {{stock.tickerName + " " + stock.currentPrice}}
+</p-->
+</p>
+</div></td>
+
+
+
+
+
+    <td> <a ng-href="http://finance.yahoo.com/q?s={{x.tickerName}}"  target="_blank">Yahoo</a></td>
+
+    <td><a ng-href="http://www.google.com/finance?q={{x.tickerName}}"  target="_blank">Google</a></td>
+
+  </tr>
+</tbody>
+ <tfoot>
+    <tr>
+      <td>Enter Ticker</td>
+      <td>Enter Price</td>
+      <td>Enter Notes</td>
+      <td></td>
+      <td></td>	
+    </tr>
+  </tfoot>
+</table>
+<!--script src="myStockNoteApp.js"></script>
+<script src="myStockNoteCtrl.js"></script-->
+<!--script src="savaDataapp.js"></script-->
+
+
+<script>
+function stockdataController($scope,$http) {
+  $http.get("http://localhost/angularjsproj/stockangproj/stockdata_json.php")
+  .success(function(response) {$scope.tickernames = response;});
+// $scope.open  = function() {
+//                      var x = document.createElement("TEXTAREA id='textareanotes'");
+ //                     var t = document.createTextNode("Type Note here-");
+ //                     x.appendChild(t);
+ //                     document.body.appendChild(x);
+
+ //                       alert("open");
+ //                       alert($scope.message);};
+
+}
+//myStockNoteCtrl.js
+
+
+//app.controller("stockdataController", function($scope) {
+//    $scope.message = "";
+//    $scope.left  = function() {return 100 - $scope.message.length;};
+//    $scope.clear = function() {$scope.message = "";};
+ //   $scope.save  = function() {alert("Note Saved");};
+ //   $scope.open  = function() {
+//                      var x = document.createElement("TEXTAREA");
+ //                     var t = document.createTextNode("Your Data");
+ //                     x.appendChild(t);
+ //                     document.body.appendChild(x);
+
+ //                       alert("open");
+ //                       alert($scope.message);};
+//});
+function myController($scope) {
+    $scope.count = 0;
+}
+function companyController($scope) {
+    //$scope.companyName = "Google",
+    //$scope.companytickerName = "Goog"
+    $scope.myVar1 = false;
+    $scope.toggle = function() {
+        $scope.myVar1 = !$scope.myVar1;
+	var x1 = document.getElementById("company-btn").innerHTML;
+        if (x1=="Hide Company")  { x1="Show Company";}
+        else {x1="Hide Company";}    
+        document.getElementById("company-btn").innerHTML = x1;
+
+    };
+}
+function stockController($scope,$http,message){
+//alert($scope.message);
+    //$scope.stock = {
+    //    tickerName: "Goog",
+     //   currentPrice: "$521.67"
+    //};
+    $scope.myVar = true;
+    $scope.open = function() {
+        $scope.myVar = !$scope.myVar;
+        var x = document.getElementById("mystocknote-btn").innerHTML;
+	if (x=="Hide")  { x="Show";
+			document.getElementById("mystocknote-btn").innerHTML = x;
+			var oldnotes1=document.getElementsByTagName("input");
+			var currentnotes1 = document.getElementsByTagName("TEXTAREA"); 
+			if (currentnotes1.parentNode) {
+			//  currentnotes1.parentNode.removeChild(currentnotes1);
+
+			parentnotes1.replaceChild(oldnotes1,currentnotes1);
+				}	
+			}
+	else {x="Hide";    
+        document.getElementById("mystocknote-btn").innerHTML = x;
+        if(typeof(y) != undefined ) {
+ 	var y = document.createElement("TEXTAREA");
+                      var t = document.createTextNode("Type Note here-");
+//		var t=$scope.Notes;
+                      y.appendChild(t);
+//                     document.body.appendChild(y);
+		}
+var currentnotes = document.getElementById("addnotes"); 
+var parentnotes = currentnotes.parentNode;
+var oldnotes=currentnotes;
+//  document.body.insertBefore(y, currentnotes); 
+parentnotes.replaceChild(y, currentnotes);
+//                        alert("open");
+//                        alert($scope.message);
+	}
+    };
+$scope.clear = function() {$scope.message = "";};
+$scope.save  = function() {alert("Note Saved");
+/*      $http({
+            url: 'http://samedomain.com/PostStocks',
+            method: "POST",
+            data: postData,
+            headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+        }).success(function (data, status, headers, config) {
+                $scope.Notes = data; // assign  $scope.persons here as promise is resolved here 
+            }).error(function (data, status, headers, config) {
+                $scope.status = status;
+            });
+**/
+}
+}
+
+
+</script>
+
+</body>
+</html>
+
